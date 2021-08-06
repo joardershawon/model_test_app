@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:model_test/application/model_test_page/modeltestpage_bloc.dart';
 
 import 'package:model_test/presentation/design/size.dart';
-import 'package:model_test/presentation/model_test/widgets/model_test_card.dart';
+
+import 'package:model_test/presentation/model_test_list/widgets/model_test_card.dart';
+import 'package:model_test/presentation/router/router.gr.dart';
 
 class ModelTestBody extends StatelessWidget {
   const ModelTestBody({
@@ -36,6 +39,13 @@ class ModelTestBody extends StatelessWidget {
                               .modelTest[index].modelShortDescription!.value,
                           image: state.modelTest[index].modelCoverImage!.value,
                           upcoming: state.overOrWhat[index],
+                          ontap: () {
+                            AutoRouter.of(context).push(
+                              ModelTestDetailsRoute(
+                                modelTest: state.modelTest[index],
+                              ),
+                            );
+                          },
                         );
                       },
                     ),

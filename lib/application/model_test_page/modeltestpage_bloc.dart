@@ -40,7 +40,6 @@ class ModeltestpageBloc extends Bloc<ModeltestpageEvent, ModeltestpageState> {
             }
           },
         );
-        print(overOrWhat);
 
         yield ModeltestpageState.loadSuccess(reversedItems, overOrWhat);
       },
