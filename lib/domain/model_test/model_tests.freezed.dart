@@ -24,6 +24,7 @@ class _$ModelTestTearOff {
       ModelExamStartDateTime? modelExamStartDateTime,
       ModelExamEndDateTime? modelExamEndDateTime,
       ModelExamResultDateTime? modelExamResultDateTime,
+      ModelExamResultEndDateTime? examResultEndDateTime,
       ModelCoverImage? modelCoverImage,
       ModelNegativeMarks? modelNegativeMarks,
       ModelSubscription? modelSubscription,
@@ -38,6 +39,7 @@ class _$ModelTestTearOff {
       modelExamStartDateTime: modelExamStartDateTime,
       modelExamEndDateTime: modelExamEndDateTime,
       modelExamResultDateTime: modelExamResultDateTime,
+      examResultEndDateTime: examResultEndDateTime,
       modelCoverImage: modelCoverImage,
       modelNegativeMarks: modelNegativeMarks,
       modelSubscription: modelSubscription,
@@ -63,6 +65,8 @@ mixin _$ModelTest {
   ModelExamEndDateTime? get modelExamEndDateTime =>
       throw _privateConstructorUsedError;
   ModelExamResultDateTime? get modelExamResultDateTime =>
+      throw _privateConstructorUsedError;
+  ModelExamResultEndDateTime? get examResultEndDateTime =>
       throw _privateConstructorUsedError;
   ModelCoverImage? get modelCoverImage => throw _privateConstructorUsedError;
   ModelNegativeMarks? get modelNegativeMarks =>
@@ -90,6 +94,7 @@ abstract class $ModelTestCopyWith<$Res> {
       ModelExamStartDateTime? modelExamStartDateTime,
       ModelExamEndDateTime? modelExamEndDateTime,
       ModelExamResultDateTime? modelExamResultDateTime,
+      ModelExamResultEndDateTime? examResultEndDateTime,
       ModelCoverImage? modelCoverImage,
       ModelNegativeMarks? modelNegativeMarks,
       ModelSubscription? modelSubscription,
@@ -115,6 +120,7 @@ class _$ModelTestCopyWithImpl<$Res> implements $ModelTestCopyWith<$Res> {
     Object? modelExamStartDateTime = freezed,
     Object? modelExamEndDateTime = freezed,
     Object? modelExamResultDateTime = freezed,
+    Object? examResultEndDateTime = freezed,
     Object? modelCoverImage = freezed,
     Object? modelNegativeMarks = freezed,
     Object? modelSubscription = freezed,
@@ -151,6 +157,10 @@ class _$ModelTestCopyWithImpl<$Res> implements $ModelTestCopyWith<$Res> {
           ? _value.modelExamResultDateTime
           : modelExamResultDateTime // ignore: cast_nullable_to_non_nullable
               as ModelExamResultDateTime?,
+      examResultEndDateTime: examResultEndDateTime == freezed
+          ? _value.examResultEndDateTime
+          : examResultEndDateTime // ignore: cast_nullable_to_non_nullable
+              as ModelExamResultEndDateTime?,
       modelCoverImage: modelCoverImage == freezed
           ? _value.modelCoverImage
           : modelCoverImage // ignore: cast_nullable_to_non_nullable
@@ -193,6 +203,7 @@ abstract class _$ModelTestCopyWith<$Res> implements $ModelTestCopyWith<$Res> {
       ModelExamStartDateTime? modelExamStartDateTime,
       ModelExamEndDateTime? modelExamEndDateTime,
       ModelExamResultDateTime? modelExamResultDateTime,
+      ModelExamResultEndDateTime? examResultEndDateTime,
       ModelCoverImage? modelCoverImage,
       ModelNegativeMarks? modelNegativeMarks,
       ModelSubscription? modelSubscription,
@@ -219,6 +230,7 @@ class __$ModelTestCopyWithImpl<$Res> extends _$ModelTestCopyWithImpl<$Res>
     Object? modelExamStartDateTime = freezed,
     Object? modelExamEndDateTime = freezed,
     Object? modelExamResultDateTime = freezed,
+    Object? examResultEndDateTime = freezed,
     Object? modelCoverImage = freezed,
     Object? modelNegativeMarks = freezed,
     Object? modelSubscription = freezed,
@@ -255,6 +267,10 @@ class __$ModelTestCopyWithImpl<$Res> extends _$ModelTestCopyWithImpl<$Res>
           ? _value.modelExamResultDateTime
           : modelExamResultDateTime // ignore: cast_nullable_to_non_nullable
               as ModelExamResultDateTime?,
+      examResultEndDateTime: examResultEndDateTime == freezed
+          ? _value.examResultEndDateTime
+          : examResultEndDateTime // ignore: cast_nullable_to_non_nullable
+              as ModelExamResultEndDateTime?,
       modelCoverImage: modelCoverImage == freezed
           ? _value.modelCoverImage
           : modelCoverImage // ignore: cast_nullable_to_non_nullable
@@ -294,6 +310,7 @@ class _$_ModelTest implements _ModelTest {
       this.modelExamStartDateTime,
       this.modelExamEndDateTime,
       this.modelExamResultDateTime,
+      this.examResultEndDateTime,
       this.modelCoverImage,
       this.modelNegativeMarks,
       this.modelSubscription,
@@ -316,6 +333,8 @@ class _$_ModelTest implements _ModelTest {
   @override
   final ModelExamResultDateTime? modelExamResultDateTime;
   @override
+  final ModelExamResultEndDateTime? examResultEndDateTime;
+  @override
   final ModelCoverImage? modelCoverImage;
   @override
   final ModelNegativeMarks? modelNegativeMarks;
@@ -330,7 +349,7 @@ class _$_ModelTest implements _ModelTest {
 
   @override
   String toString() {
-    return 'ModelTest(modelUrl: $modelUrl, modelId: $modelId, modelTitle: $modelTitle, modelShortDescription: $modelShortDescription, modelExamStartDateTime: $modelExamStartDateTime, modelExamEndDateTime: $modelExamEndDateTime, modelExamResultDateTime: $modelExamResultDateTime, modelCoverImage: $modelCoverImage, modelNegativeMarks: $modelNegativeMarks, modelSubscription: $modelSubscription, modelExamTime: $modelExamTime, modelPassMarks: $modelPassMarks, modelStatus: $modelStatus)';
+    return 'ModelTest(modelUrl: $modelUrl, modelId: $modelId, modelTitle: $modelTitle, modelShortDescription: $modelShortDescription, modelExamStartDateTime: $modelExamStartDateTime, modelExamEndDateTime: $modelExamEndDateTime, modelExamResultDateTime: $modelExamResultDateTime, examResultEndDateTime: $examResultEndDateTime, modelCoverImage: $modelCoverImage, modelNegativeMarks: $modelNegativeMarks, modelSubscription: $modelSubscription, modelExamTime: $modelExamTime, modelPassMarks: $modelPassMarks, modelStatus: $modelStatus)';
   }
 
   @override
@@ -359,6 +378,9 @@ class _$_ModelTest implements _ModelTest {
                     other.modelExamResultDateTime, modelExamResultDateTime) ||
                 const DeepCollectionEquality().equals(
                     other.modelExamResultDateTime, modelExamResultDateTime)) &&
+            (identical(other.examResultEndDateTime, examResultEndDateTime) ||
+                const DeepCollectionEquality().equals(
+                    other.examResultEndDateTime, examResultEndDateTime)) &&
             (identical(other.modelCoverImage, modelCoverImage) ||
                 const DeepCollectionEquality()
                     .equals(other.modelCoverImage, modelCoverImage)) &&
@@ -389,6 +411,7 @@ class _$_ModelTest implements _ModelTest {
       const DeepCollectionEquality().hash(modelExamStartDateTime) ^
       const DeepCollectionEquality().hash(modelExamEndDateTime) ^
       const DeepCollectionEquality().hash(modelExamResultDateTime) ^
+      const DeepCollectionEquality().hash(examResultEndDateTime) ^
       const DeepCollectionEquality().hash(modelCoverImage) ^
       const DeepCollectionEquality().hash(modelNegativeMarks) ^
       const DeepCollectionEquality().hash(modelSubscription) ^
@@ -411,6 +434,7 @@ abstract class _ModelTest implements ModelTest {
       ModelExamStartDateTime? modelExamStartDateTime,
       ModelExamEndDateTime? modelExamEndDateTime,
       ModelExamResultDateTime? modelExamResultDateTime,
+      ModelExamResultEndDateTime? examResultEndDateTime,
       ModelCoverImage? modelCoverImage,
       ModelNegativeMarks? modelNegativeMarks,
       ModelSubscription? modelSubscription,
@@ -435,6 +459,9 @@ abstract class _ModelTest implements ModelTest {
       throw _privateConstructorUsedError;
   @override
   ModelExamResultDateTime? get modelExamResultDateTime =>
+      throw _privateConstructorUsedError;
+  @override
+  ModelExamResultEndDateTime? get examResultEndDateTime =>
       throw _privateConstructorUsedError;
   @override
   ModelCoverImage? get modelCoverImage => throw _privateConstructorUsedError;

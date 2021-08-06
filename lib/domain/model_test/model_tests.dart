@@ -12,6 +12,7 @@ abstract class ModelTest with _$ModelTest {
     @required ModelExamStartDateTime? modelExamStartDateTime,
     @required ModelExamEndDateTime? modelExamEndDateTime,
     @required ModelExamResultDateTime? modelExamResultDateTime,
+    @required ModelExamResultEndDateTime? examResultEndDateTime,
     @required ModelCoverImage? modelCoverImage,
     @required ModelNegativeMarks? modelNegativeMarks,
     @required ModelSubscription? modelSubscription,
@@ -34,5 +35,6 @@ abstract class ModelTest with _$ModelTest {
         modelExamTime: ModelExamTime(0),
         modelPassMarks: ModelPassMarks(0),
         modelStatus: ModelStatus(''),
+        examResultEndDateTime: ModelExamResultEndDateTime(''),
       );
 }

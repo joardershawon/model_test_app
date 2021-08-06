@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:model_test/presentation/design/coolors.dart';
 
 class ModelTestCard extends StatelessWidget {
-  final String? image, title, description;
+  final String? image, title, description, upcoming;
   const ModelTestCard({
     Key? key,
     @required this.image,
     @required this.title,
     @required this.description,
+    @required this.upcoming,
   }) : super(key: key);
 
   @override
@@ -23,6 +24,15 @@ class ModelTestCard extends StatelessWidget {
             Image.network(
               image!,
               fit: BoxFit.cover,
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                return const Text(
+                  "ERROR LOADING IMAGE....\nCheck Your Connection ..",
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 10),
             Text(
@@ -38,7 +48,7 @@ class ModelTestCard extends StatelessWidget {
               description!,
               style: const TextStyle(
                 color: Coolors.black,
-                fontSize: 14,
+                fontSize: 16,
               ),
             ),
             Row(
@@ -50,7 +60,7 @@ class ModelTestCard extends StatelessWidget {
                     color: Coolors.razzmicBerry.withOpacity(.5),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Text('UPCOMING'.toUpperCase()),
+                  child: Text(upcoming!.toUpperCase()),
                 ),
               ],
             )

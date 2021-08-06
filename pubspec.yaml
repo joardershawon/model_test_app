@@ -28,7 +28,9 @@ dependencies:
   flutter_bloc: ^7.1.0
   freezed_annotation: ^0.14.1
   get_it: ^7.2.0
+  http: ^0.13.3
   injectable: any
+  json_serializable: any
   kt_dart: ^0.9.1
   nb_utils: ^4.4.6
   path_provider: ^2.0.2
