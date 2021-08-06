@@ -30,10 +30,10 @@ class ModeltestpageBloc extends Bloc<ModeltestpageEvent, ModeltestpageState> {
 
         reversedItems.forEach(
           (element) {
-            var d = DateTime.parse(element.modelExamStartDateTime!.value);
-            if (d.isBefore(currentDate)) {
+            var startD = DateTime.parse(element.modelExamStartDateTime!.value);
+            if (startD.isBefore(currentDate)) {
               overOrWhat.add('GET RESULT');
-            } else if (d.isAfter(currentDate)) {
+            } else if (startD.isAfter(currentDate)) {
               overOrWhat.add('UPCOMING');
             } else {
               overOrWhat.add('TAKE EXAM');
