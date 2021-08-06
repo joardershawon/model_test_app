@@ -30,8 +30,12 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
         qList = quesBank
             .where((element) => element.modelTest!.modelId!.value == e.id)
             .toList();
-        print(qList);
-        yield QuestionbankState.loadSuccess(qList.reversed.toList());
+        if (qList.isNotEmpty) {
+          yield QuestionbankState.loadSuccess(qList);
+        } else {
+          qList.add(QuestionBank.empty());
+          yield QuestionbankState.loadSuccess(qList);
+        }
       },
     );
   }
