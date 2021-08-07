@@ -21,6 +21,13 @@ class _$QuestionbankEventTearOff {
       id,
     );
   }
+
+  _OptionPressed optionPressed(String? option, int? currentIndex) {
+    return _OptionPressed(
+      option,
+      currentIndex,
+    );
+  }
 }
 
 /// @nodoc
@@ -28,33 +35,31 @@ const $QuestionbankEvent = _$QuestionbankEventTearOff();
 
 /// @nodoc
 mixin _$QuestionbankEvent {
-  int? get id => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int? id) started,
+    required TResult Function(String? option, int? currentIndex) optionPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? id)? started,
+    TResult Function(String? option, int? currentIndex)? optionPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OptionPressed value) optionPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OptionPressed value)? optionPressed,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $QuestionbankEventCopyWith<QuestionbankEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -63,7 +68,6 @@ abstract class $QuestionbankEventCopyWith<$Res> {
   factory $QuestionbankEventCopyWith(
           QuestionbankEvent value, $Res Function(QuestionbankEvent) then) =
       _$QuestionbankEventCopyWithImpl<$Res>;
-  $Res call({int? id});
 }
 
 /// @nodoc
@@ -74,26 +78,12 @@ class _$QuestionbankEventCopyWithImpl<$Res>
   final QuestionbankEvent _value;
   // ignore: unused_field
   final $Res Function(QuestionbankEvent) _then;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res>
-    implements $QuestionbankEventCopyWith<$Res> {
+abstract class _$StartedCopyWith<$Res> {
   factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
       __$StartedCopyWithImpl<$Res>;
-  @override
   $Res call({int? id});
 }
 
@@ -153,6 +143,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int? id) started,
+    required TResult Function(String? option, int? currentIndex) optionPressed,
   }) {
     return started(id);
   }
@@ -161,6 +152,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? id)? started,
+    TResult Function(String? option, int? currentIndex)? optionPressed,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -173,6 +165,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OptionPressed value) optionPressed,
   }) {
     return started(this);
   }
@@ -181,6 +174,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OptionPressed value)? optionPressed,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -193,11 +187,139 @@ class _$_Started implements _Started {
 abstract class _Started implements QuestionbankEvent {
   const factory _Started(int? id) = _$_Started;
 
-  @override
   int? get id => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   _$StartedCopyWith<_Started> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$OptionPressedCopyWith<$Res> {
+  factory _$OptionPressedCopyWith(
+          _OptionPressed value, $Res Function(_OptionPressed) then) =
+      __$OptionPressedCopyWithImpl<$Res>;
+  $Res call({String? option, int? currentIndex});
+}
+
+/// @nodoc
+class __$OptionPressedCopyWithImpl<$Res>
+    extends _$QuestionbankEventCopyWithImpl<$Res>
+    implements _$OptionPressedCopyWith<$Res> {
+  __$OptionPressedCopyWithImpl(
+      _OptionPressed _value, $Res Function(_OptionPressed) _then)
+      : super(_value, (v) => _then(v as _OptionPressed));
+
+  @override
+  _OptionPressed get _value => super._value as _OptionPressed;
+
+  @override
+  $Res call({
+    Object? option = freezed,
+    Object? currentIndex = freezed,
+  }) {
+    return _then(_OptionPressed(
+      option == freezed
+          ? _value.option
+          : option // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currentIndex == freezed
+          ? _value.currentIndex
+          : currentIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OptionPressed implements _OptionPressed {
+  const _$_OptionPressed(this.option, this.currentIndex);
+
+  @override
+  final String? option;
+  @override
+  final int? currentIndex;
+
+  @override
+  String toString() {
+    return 'QuestionbankEvent.optionPressed(option: $option, currentIndex: $currentIndex)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OptionPressed &&
+            (identical(other.option, option) ||
+                const DeepCollectionEquality().equals(other.option, option)) &&
+            (identical(other.currentIndex, currentIndex) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentIndex, currentIndex)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(option) ^
+      const DeepCollectionEquality().hash(currentIndex);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OptionPressedCopyWith<_OptionPressed> get copyWith =>
+      __$OptionPressedCopyWithImpl<_OptionPressed>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int? id) started,
+    required TResult Function(String? option, int? currentIndex) optionPressed,
+  }) {
+    return optionPressed(option, currentIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int? id)? started,
+    TResult Function(String? option, int? currentIndex)? optionPressed,
+    required TResult orElse(),
+  }) {
+    if (optionPressed != null) {
+      return optionPressed(option, currentIndex);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_OptionPressed value) optionPressed,
+  }) {
+    return optionPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OptionPressed value)? optionPressed,
+    required TResult orElse(),
+  }) {
+    if (optionPressed != null) {
+      return optionPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OptionPressed implements QuestionbankEvent {
+  const factory _OptionPressed(String? option, int? currentIndex) =
+      _$_OptionPressed;
+
+  String? get option => throw _privateConstructorUsedError;
+  int? get currentIndex => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$OptionPressedCopyWith<_OptionPressed> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

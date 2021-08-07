@@ -19,6 +19,7 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
   IQuestionBankRepository _iQuestionBankRepository;
 
   List<QuestionBank> qList = [];
+  List<String> ansList = [];
   @override
   Stream<QuestionbankState> mapEventToState(
     QuestionbankEvent event,
@@ -30,6 +31,7 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
         qList = quesBank
             .where((element) => element.modelTest!.modelId!.value == e.id)
             .toList();
+        ansList = List.filled(qList.length, 'null');
         if (qList.isNotEmpty) {
           yield QuestionbankState.loadSuccess(qList);
         } else {
@@ -37,6 +39,26 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
           yield QuestionbankState.loadSuccess(qList);
         }
       },
+      optionPressed: (e) async* {
+        if (qList[e.currentIndex!]
+            .questionCorrectAnswer!
+            .value
+            .contains(e.option!)) {
+          ansList[e.currentIndex!].contains('null')
+              ? ansList[e.currentIndex!] = 'true'
+              : ansList[e.currentIndex!] = ansList[e.currentIndex!];
+        } else {
+          ansList[e.currentIndex!].contains('null')
+              ? ansList[e.currentIndex!] = 'false'
+              : ansList[e.currentIndex!] = ansList[e.currentIndex!];
+        }
+        print(ansList);
+      },
     );
+  }
+
+  @override
+  Future<void> close() {
+    return super.close();
   }
 }

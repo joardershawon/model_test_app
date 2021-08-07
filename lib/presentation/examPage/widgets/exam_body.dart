@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:model_test/application/question_bank/questionbank_bloc.dart';
+import 'package:model_test/presentation/design/coolors.dart';
 
 class ExamBody extends StatefulWidget {
   final String? modelTestId;
@@ -29,36 +31,21 @@ class _ExamBodyState extends State<ExamBody> {
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        state.questionList![currentIndex].questionId!.value
-                                .toString() +
-                            '.',
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                          state.questionList![currentIndex].questionStr!.value),
-                    ],
-                  ),
-                  Text(
-                      state.questionList![currentIndex].questionOption1!.value),
-                  Text(
-                      state.questionList![currentIndex].questionOption2!.value),
-                  Text(
-                      state.questionList![currentIndex].questionOption3!.value),
-                  Text(
-                      state.questionList![currentIndex].questionOption4!.value),
-                  Text(
-                      state.questionList![currentIndex].questionOption5!.value),
-                  Text(
-                    'Correct Answer: ' +
-                        state.questionList![currentIndex].questionCorrectAnswer!
-                            .value,
+                  ExamCardWidget(
+                    currentIndex: currentIndex,
+                    qIndex: state.questionList![currentIndex].questionId!.value
+                        .toString(),
+                    qStr: state.questionList![currentIndex].questionStr!.value,
+                    qFirst: state
+                        .questionList![currentIndex].questionOption1!.value,
+                    qSecond: state
+                        .questionList![currentIndex].questionOption2!.value,
+                    qThird: state
+                        .questionList![currentIndex].questionOption3!.value,
+                    qFourth: state
+                        .questionList![currentIndex].questionOption4!.value,
+                    qFifth: state
+                        .questionList![currentIndex].questionOption5!.value,
                   ),
                   const SizedBox(
                     height: 50,
@@ -102,6 +89,92 @@ class _ExamBodyState extends State<ExamBody> {
           },
         );
       },
+    );
+  }
+}
+
+class ExamCardWidget extends StatelessWidget {
+  final String? qIndex, qStr, qFirst, qSecond, qThird, qFourth, qFifth;
+  final int? currentIndex;
+
+  const ExamCardWidget({
+    Key? key,
+    @required this.qIndex,
+    @required this.qStr,
+    @required this.qFirst,
+    @required this.qSecond,
+    @required this.qThird,
+    @required this.qFourth,
+    @required this.qFifth,
+    @required this.currentIndex,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Text(qIndex! + '. ' + qStr!),
+          OptionWidget(
+            qStr: qFirst,
+            currentIndex: currentIndex,
+          ),
+          OptionWidget(
+            qStr: qSecond,
+            currentIndex: currentIndex,
+          ),
+          OptionWidget(
+            qStr: qThird,
+            currentIndex: currentIndex,
+          ),
+          OptionWidget(
+            qStr: qFourth,
+            currentIndex: currentIndex,
+          ),
+          OptionWidget(
+            qStr: qFifth,
+            currentIndex: currentIndex,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class OptionWidget extends HookWidget {
+  const OptionWidget({
+    Key? key,
+    @required this.currentIndex,
+    @required this.qStr,
+  }) : super(key: key);
+
+  final String? qStr;
+  final int? currentIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    // final toggleState = useState(false);
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: ListTile(
+        minVerticalPadding: 20,
+        onTap: () {
+          BlocProvider.of<QuestionbankBloc>(context).add(
+            QuestionbankEvent.optionPressed(
+              qStr!.isNotEmpty ? qStr : 'none',
+              currentIndex,
+            ),
+          );
+        },
+        title: Text(qStr!.isEmpty ? 'None Above' : qStr!),
+        tileColor: Coolors.razzmicBerry.withOpacity(.5),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(10),
+            bottomRight: Radius.circular(10),
+          ),
+        ),
+      ),
     );
   }
 }
