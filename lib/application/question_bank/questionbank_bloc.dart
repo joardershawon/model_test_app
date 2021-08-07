@@ -52,8 +52,27 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
               ? ansList[e.currentIndex!] = 'false'
               : ansList[e.currentIndex!] = ansList[e.currentIndex!];
         }
-        print(ansList);
+
+        //** .............Result Calculations.......... */
+        var totalAnswrd = ansList.where((element) => element != 'null').length;
+        var rightAns = ansList.where((element) => element == 'true').length;
+        var wrongAns = ansList.where((element) => element == 'false').length;
+        var totNeg = wrongAns *
+            qList[e.currentIndex!].modelTest!.modelNegativeMarks!.value;
+        var totalMarks = rightAns - totNeg;
+
+        print('total Marks' + totalMarks.toString());
+        qList[e.currentIndex!].modelTest!.modelPassMarks!.value <= totalMarks
+            ? print('Passed')
+            : print('failed');
+        // print(ansList);
+        // print(ansList.where((element) => element == 'true').length);
+        // print(ansList.where((element) => element == 'false').length);
+        // print(
+        //  }',
+        // );
       },
+      //TODO: RESULT EVENT TO BE IMPLEMENTED
     );
   }
 

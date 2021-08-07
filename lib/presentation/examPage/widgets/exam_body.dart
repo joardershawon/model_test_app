@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:model_test/application/question_bank/questionbank_bloc.dart';
 import 'package:model_test/presentation/design/coolors.dart';
+import 'package:model_test/presentation/design/size.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class ExamBody extends StatefulWidget {
   final String? modelTestId;
@@ -83,6 +85,19 @@ class _ExamBodyState extends State<ExamBody> {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AppButton(
+                        onTap: () {},
+                        color: Coolors.blue5,
+                        text: 'RESULT',
+                      )
+                    ],
+                  )
                 ],
               ),
             );
@@ -111,10 +126,22 @@ class ExamCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: getPercentSize(60, true, context),
       padding: const EdgeInsets.all(10),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(qIndex! + '. ' + qStr!),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Text(
+              qIndex! + '. ' + qStr!,
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
           OptionWidget(
             qStr: qFirst,
             currentIndex: currentIndex,
@@ -153,11 +180,9 @@ class OptionWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final toggleState = useState(false);
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: ListTile(
-        minVerticalPadding: 20,
         onTap: () {
           BlocProvider.of<QuestionbankBloc>(context).add(
             QuestionbankEvent.optionPressed(
@@ -166,13 +191,16 @@ class OptionWidget extends HookWidget {
             ),
           );
         },
-        title: Text(qStr!.isEmpty ? 'None Above' : qStr!),
+        title: Text(
+          qStr!.isEmpty ? 'None Above' : qStr!,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
         tileColor: Coolors.razzmicBerry.withOpacity(.5),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(10),
-            bottomRight: Radius.circular(10),
-          ),
+          borderRadius: BorderRadius.circular(10),
         ),
       ),
     );
