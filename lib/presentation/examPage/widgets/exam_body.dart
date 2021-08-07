@@ -26,19 +26,25 @@ class _ExamBodyState extends State<ExamBody> {
           loading: (_) => Center(child: CircularProgressIndicator()),
           loadSuccess: (state) {
             return SingleChildScrollView(
+              padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         state.questionList![currentIndex].questionId!.value
-                            .toString(),
+                                .toString() +
+                            '.',
                         textAlign: TextAlign.center,
                       ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                          state.questionList![currentIndex].questionStr!.value),
                     ],
                   ),
-                  Text(state.questionList![currentIndex].questionStr!.value),
                   Text(
                       state.questionList![currentIndex].questionOption1!.value),
                   Text(
@@ -46,15 +52,13 @@ class _ExamBodyState extends State<ExamBody> {
                   Text(
                       state.questionList![currentIndex].questionOption3!.value),
                   Text(
+                      state.questionList![currentIndex].questionOption4!.value),
+                  Text(
+                      state.questionList![currentIndex].questionOption5!.value),
+                  Text(
                     'Correct Answer: ' +
                         state.questionList![currentIndex].questionCorrectAnswer!
                             .value,
-                  ),
-                  Text(
-                    (state.questionList![currentIndex].questionOption2!.value ==
-                            state.questionList![currentIndex]
-                                .questionCorrectAnswer!.value)
-                        .toString(),
                   ),
                   const SizedBox(
                     height: 50,
