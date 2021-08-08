@@ -34,6 +34,8 @@ class ExamModelPageBody extends StatelessWidget {
                                 ExamPageRoute(
                                   modelId:
                                       state.modelTest[index].modelId!.value,
+                                  duration: state
+                                      .modelTest[index].modelExamTime!.value,
                                 ),
                               );
                             },

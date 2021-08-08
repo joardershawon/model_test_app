@@ -41,7 +41,8 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (data) {
           final args = data.argsAs<ExamPageRouteArgs>(
               orElse: () => const ExamPageRouteArgs());
-          return _i6.ExamPage(key: args.key, modelId: args.modelId);
+          return _i6.ExamPage(
+              key: args.key, modelId: args.modelId, duration: args.duration);
         }),
     ResultPageRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
         routeData: routeData,
@@ -87,20 +88,23 @@ class ExamModelPageRoute extends _i1.PageRouteInfo {
 }
 
 class ExamPageRoute extends _i1.PageRouteInfo<ExamPageRouteArgs> {
-  ExamPageRoute({_i2.Key? key, int? modelId})
+  ExamPageRoute({_i2.Key? key, int? modelId, int? duration})
       : super(name,
             path: '/exam-page',
-            args: ExamPageRouteArgs(key: key, modelId: modelId));
+            args: ExamPageRouteArgs(
+                key: key, modelId: modelId, duration: duration));
 
   static const String name = 'ExamPageRoute';
 }
 
 class ExamPageRouteArgs {
-  const ExamPageRouteArgs({this.key, this.modelId});
+  const ExamPageRouteArgs({this.key, this.modelId, this.duration});
 
   final _i2.Key? key;
 
   final int? modelId;
+
+  final int? duration;
 }
 
 class ResultPageRoute extends _i1.PageRouteInfo {

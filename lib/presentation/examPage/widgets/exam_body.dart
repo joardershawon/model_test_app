@@ -1,19 +1,22 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:nb_utils/nb_utils.dart';
+
 import 'package:model_test/application/question_bank/questionbank_bloc.dart';
 import 'package:model_test/presentation/design/coolors.dart';
-import 'package:model_test/presentation/design/size.dart';
 import 'package:model_test/presentation/examPage/widgets/exam_card_widget.dart';
-import 'package:model_test/presentation/router/router.gr.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 class ExamBody extends StatefulWidget {
   final String? modelTestId;
+  final int? duration;
+
   const ExamBody({
     Key? key,
     @required this.modelTestId,
+    @required this.duration,
   }) : super(key: key);
 
   @override
@@ -22,6 +25,36 @@ class ExamBody extends StatefulWidget {
 
 class _ExamBodyState extends State<ExamBody> {
   int currentIndex = 0;
+  int? get maxTime => widget.duration;
+  // var d = 0;
+  var t = 0;
+  Timer? timer;
+  @override
+  void initState() {
+    // d = maxTime!;
+    super.initState();
+    startTimer();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer!.cancel();
+  }
+
+  void startTimer() {
+    timer = Timer.periodic(Duration(seconds: 1), (tmr) {
+      setState(() {
+        t = tmr.tick;
+        print(t);
+        BlocProvider.of<QuestionbankBloc>(context).add(
+          QuestionbankEvent.timerStarted(t),
+        );
+        // d != 0 ? d = d - t : d = 0;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QuestionbankBloc, QuestionbankState>(
@@ -32,10 +65,27 @@ class _ExamBodyState extends State<ExamBody> {
           ),
           loading: (_) => Center(child: CircularProgressIndicator()),
           loadSuccess: (state) {
+            var seconds = ((state.time! % 60) - 1).truncate().toString();
+            var minutes = (state.time! / 60).truncate().toString();
+
             return SingleChildScrollView(
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Coolors.blue1,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      minutes + ' : ' + seconds + ' s ',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Coolors.blackCoral,
+                      ),
+                    ),
+                  ),
                   ExamCardWidget(
                     key: ValueKey(currentIndex),
                     currentIndex: currentIndex,
@@ -53,9 +103,9 @@ class _ExamBodyState extends State<ExamBody> {
                     qFifth: state
                         .questionList![currentIndex].questionOption5!.value,
                   ),
-                  const SizedBox(
-                    height: 50,
-                  ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -88,7 +138,7 @@ class _ExamBodyState extends State<ExamBody> {
                     ],
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -97,12 +147,13 @@ class _ExamBodyState extends State<ExamBody> {
                         onTap: () {
                           showConfirmDialogCustom(
                             context,
-                            title: 'Submit?',
+                            title: 'Are you sure to SUBMIT RESULT ?',
                             onAccept: (_) {
-                              // BlocProvider.of<QuestionbankBloc>(context).add(
-                              //   QuestionbankEvent.submitPressed(),
-                              // );
+                              BlocProvider.of<QuestionbankBloc>(context).add(
+                                QuestionbankEvent.submitPressed(),
+                              );
                               AutoRouter.of(context).popTop();
+                              timer!.cancel();
                             },
                           ).then((value) => AutoRouter.of(context).popTop());
                         },

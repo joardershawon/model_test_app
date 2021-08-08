@@ -5,9 +5,13 @@ import 'package:model_test/injection.dart';
 import 'package:model_test/presentation/examPage/widgets/exam_body.dart';
 
 class ExamPage extends StatelessWidget {
-  final int? modelId;
+  final int? modelId, duration;
 
-  const ExamPage({Key? key, this.modelId}) : super(key: key);
+  const ExamPage({
+    Key? key,
+    @required this.modelId,
+    @required this.duration,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +25,7 @@ class ExamPage extends StatelessWidget {
           ),
         child: ExamBody(
           modelTestId: modelId.toString(),
+          duration: duration,
         ),
       ),
     );

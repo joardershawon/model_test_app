@@ -8,5 +8,6 @@ class QuestionbankState with _$QuestionbankState {
     List<QuestionBank>? questionList,
     Result? result,
     Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+    int? time,
   ) = _LoadSuccess;
 }

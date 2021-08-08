@@ -26,6 +26,12 @@ class _$QuestionbankEventTearOff {
     return const _SubmitPressed();
   }
 
+  _TimerStarted timerStarted(int? time) {
+    return _TimerStarted(
+      time,
+    );
+  }
+
   _OptionPressed optionPressed(String? option, int? currentIndex) {
     return _OptionPressed(
       option,
@@ -43,6 +49,7 @@ mixin _$QuestionbankEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int? id) started,
     required TResult Function() submitPressed,
+    required TResult Function(int? time) timerStarted,
     required TResult Function(String? option, int? currentIndex) optionPressed,
   }) =>
       throw _privateConstructorUsedError;
@@ -50,6 +57,7 @@ mixin _$QuestionbankEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? id)? started,
     TResult Function()? submitPressed,
+    TResult Function(int? time)? timerStarted,
     TResult Function(String? option, int? currentIndex)? optionPressed,
     required TResult orElse(),
   }) =>
@@ -58,6 +66,7 @@ mixin _$QuestionbankEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_SubmitPressed value) submitPressed,
+    required TResult Function(_TimerStarted value) timerStarted,
     required TResult Function(_OptionPressed value) optionPressed,
   }) =>
       throw _privateConstructorUsedError;
@@ -65,6 +74,7 @@ mixin _$QuestionbankEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SubmitPressed value)? submitPressed,
+    TResult Function(_TimerStarted value)? timerStarted,
     TResult Function(_OptionPressed value)? optionPressed,
     required TResult orElse(),
   }) =>
@@ -152,6 +162,7 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(int? id) started,
     required TResult Function() submitPressed,
+    required TResult Function(int? time) timerStarted,
     required TResult Function(String? option, int? currentIndex) optionPressed,
   }) {
     return started(id);
@@ -162,6 +173,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? id)? started,
     TResult Function()? submitPressed,
+    TResult Function(int? time)? timerStarted,
     TResult Function(String? option, int? currentIndex)? optionPressed,
     required TResult orElse(),
   }) {
@@ -176,6 +188,7 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_SubmitPressed value) submitPressed,
+    required TResult Function(_TimerStarted value) timerStarted,
     required TResult Function(_OptionPressed value) optionPressed,
   }) {
     return started(this);
@@ -186,6 +199,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SubmitPressed value)? submitPressed,
+    TResult Function(_TimerStarted value)? timerStarted,
     TResult Function(_OptionPressed value)? optionPressed,
     required TResult orElse(),
   }) {
@@ -247,6 +261,7 @@ class _$_SubmitPressed implements _SubmitPressed {
   TResult when<TResult extends Object?>({
     required TResult Function(int? id) started,
     required TResult Function() submitPressed,
+    required TResult Function(int? time) timerStarted,
     required TResult Function(String? option, int? currentIndex) optionPressed,
   }) {
     return submitPressed();
@@ -257,6 +272,7 @@ class _$_SubmitPressed implements _SubmitPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? id)? started,
     TResult Function()? submitPressed,
+    TResult Function(int? time)? timerStarted,
     TResult Function(String? option, int? currentIndex)? optionPressed,
     required TResult orElse(),
   }) {
@@ -271,6 +287,7 @@ class _$_SubmitPressed implements _SubmitPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_SubmitPressed value) submitPressed,
+    required TResult Function(_TimerStarted value) timerStarted,
     required TResult Function(_OptionPressed value) optionPressed,
   }) {
     return submitPressed(this);
@@ -281,6 +298,7 @@ class _$_SubmitPressed implements _SubmitPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SubmitPressed value)? submitPressed,
+    TResult Function(_TimerStarted value)? timerStarted,
     TResult Function(_OptionPressed value)? optionPressed,
     required TResult orElse(),
   }) {
@@ -293,6 +311,130 @@ class _$_SubmitPressed implements _SubmitPressed {
 
 abstract class _SubmitPressed implements QuestionbankEvent {
   const factory _SubmitPressed() = _$_SubmitPressed;
+}
+
+/// @nodoc
+abstract class _$TimerStartedCopyWith<$Res> {
+  factory _$TimerStartedCopyWith(
+          _TimerStarted value, $Res Function(_TimerStarted) then) =
+      __$TimerStartedCopyWithImpl<$Res>;
+  $Res call({int? time});
+}
+
+/// @nodoc
+class __$TimerStartedCopyWithImpl<$Res>
+    extends _$QuestionbankEventCopyWithImpl<$Res>
+    implements _$TimerStartedCopyWith<$Res> {
+  __$TimerStartedCopyWithImpl(
+      _TimerStarted _value, $Res Function(_TimerStarted) _then)
+      : super(_value, (v) => _then(v as _TimerStarted));
+
+  @override
+  _TimerStarted get _value => super._value as _TimerStarted;
+
+  @override
+  $Res call({
+    Object? time = freezed,
+  }) {
+    return _then(_TimerStarted(
+      time == freezed
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_TimerStarted implements _TimerStarted {
+  const _$_TimerStarted(this.time);
+
+  @override
+  final int? time;
+
+  @override
+  String toString() {
+    return 'QuestionbankEvent.timerStarted(time: $time)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _TimerStarted &&
+            (identical(other.time, time) ||
+                const DeepCollectionEquality().equals(other.time, time)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(time);
+
+  @JsonKey(ignore: true)
+  @override
+  _$TimerStartedCopyWith<_TimerStarted> get copyWith =>
+      __$TimerStartedCopyWithImpl<_TimerStarted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int? id) started,
+    required TResult Function() submitPressed,
+    required TResult Function(int? time) timerStarted,
+    required TResult Function(String? option, int? currentIndex) optionPressed,
+  }) {
+    return timerStarted(time);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int? id)? started,
+    TResult Function()? submitPressed,
+    TResult Function(int? time)? timerStarted,
+    TResult Function(String? option, int? currentIndex)? optionPressed,
+    required TResult orElse(),
+  }) {
+    if (timerStarted != null) {
+      return timerStarted(time);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SubmitPressed value) submitPressed,
+    required TResult Function(_TimerStarted value) timerStarted,
+    required TResult Function(_OptionPressed value) optionPressed,
+  }) {
+    return timerStarted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SubmitPressed value)? submitPressed,
+    TResult Function(_TimerStarted value)? timerStarted,
+    TResult Function(_OptionPressed value)? optionPressed,
+    required TResult orElse(),
+  }) {
+    if (timerStarted != null) {
+      return timerStarted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TimerStarted implements QuestionbankEvent {
+  const factory _TimerStarted(int? time) = _$_TimerStarted;
+
+  int? get time => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$TimerStartedCopyWith<_TimerStarted> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -374,6 +516,7 @@ class _$_OptionPressed implements _OptionPressed {
   TResult when<TResult extends Object?>({
     required TResult Function(int? id) started,
     required TResult Function() submitPressed,
+    required TResult Function(int? time) timerStarted,
     required TResult Function(String? option, int? currentIndex) optionPressed,
   }) {
     return optionPressed(option, currentIndex);
@@ -384,6 +527,7 @@ class _$_OptionPressed implements _OptionPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? id)? started,
     TResult Function()? submitPressed,
+    TResult Function(int? time)? timerStarted,
     TResult Function(String? option, int? currentIndex)? optionPressed,
     required TResult orElse(),
   }) {
@@ -398,6 +542,7 @@ class _$_OptionPressed implements _OptionPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_SubmitPressed value) submitPressed,
+    required TResult Function(_TimerStarted value) timerStarted,
     required TResult Function(_OptionPressed value) optionPressed,
   }) {
     return optionPressed(this);
@@ -408,6 +553,7 @@ class _$_OptionPressed implements _OptionPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SubmitPressed value)? submitPressed,
+    TResult Function(_TimerStarted value)? timerStarted,
     TResult Function(_OptionPressed value)? optionPressed,
     required TResult orElse(),
   }) {
@@ -442,11 +588,12 @@ class _$QuestionbankStateTearOff {
   }
 
   _LoadSuccess loadSuccess(List<QuestionBank>? questionList, Result? result,
-      Option<Either<ResultFailure, Unit>>? failureOrSuccessOption) {
+      Option<Either<ResultFailure, Unit>>? failureOrSuccessOption, int? time) {
     return _LoadSuccess(
       questionList,
       result,
       failureOrSuccessOption,
+      time,
     );
   }
 }
@@ -460,8 +607,11 @@ mixin _$QuestionbankState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<QuestionBank>? questionList, Result? result,
-            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption)
+    required TResult Function(
+            List<QuestionBank>? questionList,
+            Result? result,
+            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+            int? time)
         loadSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -469,8 +619,11 @@ mixin _$QuestionbankState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<QuestionBank>? questionList, Result? result,
-            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption)?
+    TResult Function(
+            List<QuestionBank>? questionList,
+            Result? result,
+            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+            int? time)?
         loadSuccess,
     required TResult orElse(),
   }) =>
@@ -548,8 +701,11 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<QuestionBank>? questionList, Result? result,
-            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption)
+    required TResult Function(
+            List<QuestionBank>? questionList,
+            Result? result,
+            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+            int? time)
         loadSuccess,
   }) {
     return initial();
@@ -560,8 +716,11 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<QuestionBank>? questionList, Result? result,
-            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption)?
+    TResult Function(
+            List<QuestionBank>? questionList,
+            Result? result,
+            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+            int? time)?
         loadSuccess,
     required TResult orElse(),
   }) {
@@ -639,8 +798,11 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<QuestionBank>? questionList, Result? result,
-            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption)
+    required TResult Function(
+            List<QuestionBank>? questionList,
+            Result? result,
+            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+            int? time)
         loadSuccess,
   }) {
     return loading();
@@ -651,8 +813,11 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<QuestionBank>? questionList, Result? result,
-            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption)?
+    TResult Function(
+            List<QuestionBank>? questionList,
+            Result? result,
+            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+            int? time)?
         loadSuccess,
     required TResult orElse(),
   }) {
@@ -699,7 +864,8 @@ abstract class _$LoadSuccessCopyWith<$Res> {
   $Res call(
       {List<QuestionBank>? questionList,
       Result? result,
-      Option<Either<ResultFailure, Unit>>? failureOrSuccessOption});
+      Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+      int? time});
 
   $ResultCopyWith<$Res>? get result;
 }
@@ -720,6 +886,7 @@ class __$LoadSuccessCopyWithImpl<$Res>
     Object? questionList = freezed,
     Object? result = freezed,
     Object? failureOrSuccessOption = freezed,
+    Object? time = freezed,
   }) {
     return _then(_LoadSuccess(
       questionList == freezed
@@ -734,6 +901,10 @@ class __$LoadSuccessCopyWithImpl<$Res>
           ? _value.failureOrSuccessOption
           : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<ResultFailure, Unit>>?,
+      time == freezed
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 
@@ -753,7 +924,7 @@ class __$LoadSuccessCopyWithImpl<$Res>
 
 class _$_LoadSuccess implements _LoadSuccess {
   const _$_LoadSuccess(
-      this.questionList, this.result, this.failureOrSuccessOption);
+      this.questionList, this.result, this.failureOrSuccessOption, this.time);
 
   @override
   final List<QuestionBank>? questionList;
@@ -761,10 +932,12 @@ class _$_LoadSuccess implements _LoadSuccess {
   final Result? result;
   @override
   final Option<Either<ResultFailure, Unit>>? failureOrSuccessOption;
+  @override
+  final int? time;
 
   @override
   String toString() {
-    return 'QuestionbankState.loadSuccess(questionList: $questionList, result: $result, failureOrSuccessOption: $failureOrSuccessOption)';
+    return 'QuestionbankState.loadSuccess(questionList: $questionList, result: $result, failureOrSuccessOption: $failureOrSuccessOption, time: $time)';
   }
 
   @override
@@ -778,7 +951,9 @@ class _$_LoadSuccess implements _LoadSuccess {
                 const DeepCollectionEquality().equals(other.result, result)) &&
             (identical(other.failureOrSuccessOption, failureOrSuccessOption) ||
                 const DeepCollectionEquality().equals(
-                    other.failureOrSuccessOption, failureOrSuccessOption)));
+                    other.failureOrSuccessOption, failureOrSuccessOption)) &&
+            (identical(other.time, time) ||
+                const DeepCollectionEquality().equals(other.time, time)));
   }
 
   @override
@@ -786,7 +961,8 @@ class _$_LoadSuccess implements _LoadSuccess {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(questionList) ^
       const DeepCollectionEquality().hash(result) ^
-      const DeepCollectionEquality().hash(failureOrSuccessOption);
+      const DeepCollectionEquality().hash(failureOrSuccessOption) ^
+      const DeepCollectionEquality().hash(time);
 
   @JsonKey(ignore: true)
   @override
@@ -798,11 +974,14 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<QuestionBank>? questionList, Result? result,
-            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption)
+    required TResult Function(
+            List<QuestionBank>? questionList,
+            Result? result,
+            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+            int? time)
         loadSuccess,
   }) {
-    return loadSuccess(questionList, result, failureOrSuccessOption);
+    return loadSuccess(questionList, result, failureOrSuccessOption, time);
   }
 
   @override
@@ -810,13 +989,16 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<QuestionBank>? questionList, Result? result,
-            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption)?
+    TResult Function(
+            List<QuestionBank>? questionList,
+            Result? result,
+            Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+            int? time)?
         loadSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess(questionList, result, failureOrSuccessOption);
+      return loadSuccess(questionList, result, failureOrSuccessOption, time);
     }
     return orElse();
   }
@@ -847,14 +1029,17 @@ class _$_LoadSuccess implements _LoadSuccess {
 }
 
 abstract class _LoadSuccess implements QuestionbankState {
-  const factory _LoadSuccess(List<QuestionBank>? questionList, Result? result,
-          Option<Either<ResultFailure, Unit>>? failureOrSuccessOption) =
-      _$_LoadSuccess;
+  const factory _LoadSuccess(
+      List<QuestionBank>? questionList,
+      Result? result,
+      Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
+      int? time) = _$_LoadSuccess;
 
   List<QuestionBank>? get questionList => throw _privateConstructorUsedError;
   Result? get result => throw _privateConstructorUsedError;
   Option<Either<ResultFailure, Unit>>? get failureOrSuccessOption =>
       throw _privateConstructorUsedError;
+  int? get time => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$LoadSuccessCopyWith<_LoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;

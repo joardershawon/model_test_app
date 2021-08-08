@@ -30,6 +30,8 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
   List<String> ansList = [];
   Result _result = Result.empty();
   int currentIndex = 0;
+  int timeSpend = 0;
+  int timeRemaining = 0;
 
   @override
   Stream<QuestionbankState> mapEventToState(
@@ -43,11 +45,14 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
             .where((element) => element.modelTest!.modelId!.value == e.id)
             .toList();
         ansList = List.filled(qList.length, 'null');
+        timeRemaining = (360 - timeSpend);
         if (qList.isNotEmpty) {
-          yield QuestionbankState.loadSuccess(qList, _result, none());
+          yield QuestionbankState.loadSuccess(
+              qList, _result, none(), timeRemaining);
         } else {
           qList.add(QuestionBank.empty());
-          yield QuestionbankState.loadSuccess(qList, _result, none());
+          yield QuestionbankState.loadSuccess(
+              qList, _result, none(), timeRemaining);
         }
       },
       optionPressed: (e) async* {
@@ -66,10 +71,7 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
         }
 
         yield QuestionbankState.loadSuccess(
-          qList,
-          _result,
-          none(),
-        );
+            qList, _result, none(), timeRemaining);
       },
       submitPressed: (e) async* {
         //** .............Result Calculations.......... */
@@ -77,7 +79,7 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
         var rightAns = ansList.where((element) => element == 'true').length;
 
         var wrongAns = ansList.where((element) => element == 'false').length;
-
+        // timeRemaining = (360 - timeSpend).truncate();
         var totNeg =
             wrongAns * qList[currentIndex].modelTest!.modelNegativeMarks!.value;
         var totalMarks = (rightAns - totNeg);
@@ -97,7 +99,7 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
           totalNegativeMarks: TotalNegativeMarks(totNeg),
           totalMarks: TotalMarks(totalMarks),
           passOrFail: PassOrFail(passOrf),
-          durationTaken: DurationTaken(360),
+          durationTaken: DurationTaken(timeSpend.truncate()),
           resultId: ResultId(0),
         );
         //TODO: Post Result //
@@ -108,10 +110,13 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
         failureOrSuccess = await _iResultRepository.postResult(resultDto);
 
         yield QuestionbankState.loadSuccess(
-          qList,
-          _result,
-          optionOf(failureOrSuccess),
-        );
+            qList, _result, optionOf(failureOrSuccess), timeRemaining);
+      },
+      timerStarted: (e) async* {
+        timeSpend = e.time!;
+        timeRemaining = (360 - timeSpend).truncate();
+        yield QuestionbankState.loadSuccess(
+            qList, _result, none(), timeRemaining);
       },
     );
   }

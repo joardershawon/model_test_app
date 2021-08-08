@@ -62,12 +62,10 @@ class ResultRepository implements IResultRepository {
         },
       ),
     );
-    print(response.statusCode);
+
     if (response.statusCode == 201) {
-      print('posted');
       return right(unit);
     } else {
-      print('failed');
       return left(ResultFailure.serverError());
     }
   }
