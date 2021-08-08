@@ -34,6 +34,7 @@ class _ExamBodyState extends State<ExamBody> {
               child: Column(
                 children: [
                   ExamCardWidget(
+                    key: ValueKey(currentIndex),
                     currentIndex: currentIndex,
                     qIndex: state.questionList![currentIndex].questionId!.value
                         .toString(),
@@ -46,8 +47,8 @@ class _ExamBodyState extends State<ExamBody> {
                         .questionList![currentIndex].questionOption3!.value,
                     qFourth: state
                         .questionList![currentIndex].questionOption4!.value,
-                    qFifth: state
-                        .questionList![currentIndex].questionOption5!.value,
+                    qFifth: state.questionList![currentIndex]
+                        .questionCorrectAnswer!.value,
                   ),
                   const SizedBox(
                     height: 50,
@@ -76,8 +77,6 @@ class _ExamBodyState extends State<ExamBody> {
                             } else
                               currentIndex = state.questionList!.length - 1;
                           });
-                          print(state.questionList!.length);
-                          print(currentIndex);
                         },
                         child: Icon(
                           Icons.navigate_next,
@@ -92,9 +91,13 @@ class _ExamBodyState extends State<ExamBody> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AppButton(
-                        onTap: () {},
+                        onTap: () {
+                          BlocProvider.of<QuestionbankBloc>(context).add(
+                            QuestionbankEvent.submitPressed(),
+                          );
+                        },
                         color: Coolors.blue5,
-                        text: 'RESULT',
+                        text: 'Submit?',
                       )
                     ],
                   )

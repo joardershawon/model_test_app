@@ -6,6 +6,7 @@ import 'package:model_test/presentation/homepage/homepage.dart';
 import 'package:model_test/presentation/model_test_details/model_test_details_page.dart';
 
 import 'package:model_test/presentation/model_test_list/model_test_page.dart';
+import 'package:model_test/presentation/result_page/result_page.dart';
 
 @AdaptiveAutoRouter(
   preferRelativeImports: true,
@@ -14,6 +15,7 @@ import 'package:model_test/presentation/model_test_list/model_test_page.dart';
     AutoRoute(page: ModelTestPage),
     AutoRoute(page: ExamModelPage),
     AutoRoute(page: ExamPage),
+    AutoRoute(page: ResultPage),
     AutoRoute(page: ModelTestDetails),
   ],
 )

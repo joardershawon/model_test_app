@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:model_test/application/question_bank/questionbank_bloc.dart';
-import 'package:model_test/domain/question_bank/question_bank.dart';
 import 'package:model_test/injection.dart';
 import 'package:model_test/presentation/examPage/widgets/exam_body.dart';
 

@@ -6,5 +6,7 @@ class QuestionbankState with _$QuestionbankState {
   const factory QuestionbankState.loading() = _Loading;
   const factory QuestionbankState.loadSuccess(
     List<QuestionBank>? questionList,
+    Result? result,
+    Option<Either<ResultFailure, Unit>>? failureOrSuccessOption,
   ) = _LoadSuccess;
 }

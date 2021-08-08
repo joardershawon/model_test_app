@@ -51,7 +51,9 @@ class HomePage extends StatelessWidget {
               children: [
                 AppButton(
                   text: 'Result',
-                  onTap: () {},
+                  onTap: () {
+                    AutoRouter.of(context).push(ResultPageRoute());
+                  },
                   shapeBorder: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
