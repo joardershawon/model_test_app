@@ -48,12 +48,12 @@ class TotalRAnswer extends ValueObject<int> {
   const TotalRAnswer._(this.value);
 }
 
-class TotalWAnswer extends ValueObject<int> {
+class TotalWrongAnswer extends ValueObject<int> {
   final int value;
-  factory TotalWAnswer(int? input) {
-    return TotalWAnswer._(input!);
+  factory TotalWrongAnswer(int? input) {
+    return TotalWrongAnswer._(input!);
   }
-  const TotalWAnswer._(this.value);
+  const TotalWrongAnswer._(this.value);
 }
 
 class TotalNegativeMarks extends ValueObject<double> {

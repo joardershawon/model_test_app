@@ -25,10 +25,16 @@ class ResultBloc extends Bloc<ResultEvent, ResultState> {
         List<Result> resultBystudentId = resultData
             .where((element) => element.studentId!.value == '9939')
             .toList();
-        var sorted = resultBystudentId.sorted(
-            (a, b) => a.modelTestNo!.value.compareTo(b.modelTestNo!.value));
+        var sorted = resultBystudentId
+            .sorted((a, b) => b.resultId!.value.compareTo(a.resultId!.value));
         yield ResultState.loadSuccess(sorted);
       },
     );
+  }
+
+  @override
+  Future<void> close() {
+    // TODO: implement close
+    return super.close();
   }
 }

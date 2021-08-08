@@ -28,6 +28,8 @@ class ResultBody extends StatelessWidget {
                         itemCount: state.resultList.length,
                         itemBuilder: (context, index) {
                           return ResultCardWidget(
+                            resultId: state.resultList[index].resultId!.value
+                                .toString(),
                             studentName:
                                 state.resultList[index].studentFullName!.value,
                             studentId: state.resultList[index].studentId!.value,
@@ -41,7 +43,7 @@ class ResultBody extends StatelessWidget {
                                 .resultList[index].totalRAnswer!.value
                                 .toString(),
                             totalWans: state
-                                .resultList[index].totalWAnswer!.value
+                                .resultList[index].totalWrongAnswer!.value
                                 .toString(),
                             totalMarks: state
                                 .resultList[index].totalMarks!.value
@@ -71,6 +73,7 @@ class ResultBody extends StatelessWidget {
 class ResultCardWidget extends StatelessWidget {
   final String? studentName,
       studentId,
+      resultId,
       modelTestNo,
       totalQattend,
       totalRans,
@@ -83,6 +86,7 @@ class ResultCardWidget extends StatelessWidget {
   const ResultCardWidget({
     Key? key,
     @required this.studentName,
+    @required this.resultId,
     @required this.studentId,
     @required this.modelTestNo,
     @required this.totalQattend,
@@ -116,6 +120,10 @@ class ResultCardWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            ResultFieldWidget(
+              title: 'ID',
+              subTitle: resultId,
+            ),
             ResultFieldWidget(
               title: 'Student Name',
               subTitle: studentName,

@@ -8,6 +8,7 @@ part of 'result_dto.dart';
 
 _$_ResultDto _$_$_ResultDtoFromJson(Map<String, dynamic> json) {
   return _$_ResultDto(
+    id: json['id'] as int?,
     student_full_name: json['student_full_name'] as String?,
     student_id: json['student_id'] as String?,
     model_test: json['model_test'] as int?,
@@ -23,6 +24,7 @@ _$_ResultDto _$_$_ResultDtoFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_ResultDtoToJson(_$_ResultDto instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'student_full_name': instance.student_full_name,
       'student_id': instance.student_id,
       'model_test': instance.model_test,

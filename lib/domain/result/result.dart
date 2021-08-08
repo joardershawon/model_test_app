@@ -5,12 +5,13 @@ part 'result.freezed.dart';
 @freezed
 abstract class Result with _$Result {
   const factory Result({
+    @required ResultId? resultId,
     @required StudentFullName? studentFullName,
     @required StudentId? studentId,
     @required ModelTestNo? modelTestNo,
     @required TotalQAttended? totalQAttended,
     @required TotalRAnswer? totalRAnswer,
-    @required TotalWAnswer? totalWAnswer,
+    @required TotalWrongAnswer? totalWrongAnswer,
     @required TotalNegativeMarks? totalNegativeMarks,
     @required TotalMarks? totalMarks,
     @required PassOrFail? passOrFail,
@@ -23,10 +24,11 @@ abstract class Result with _$Result {
         modelTestNo: ModelTestNo(0),
         totalQAttended: TotalQAttended(0),
         totalRAnswer: TotalRAnswer(0),
-        totalWAnswer: TotalWAnswer(0),
+        totalWrongAnswer: TotalWrongAnswer(0),
         totalNegativeMarks: TotalNegativeMarks(0),
         totalMarks: TotalMarks(0),
         passOrFail: PassOrFail(''),
         durationTaken: DurationTaken(0),
+        resultId: ResultId(0),
       );
 }

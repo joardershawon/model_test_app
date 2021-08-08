@@ -21,7 +21,8 @@ class _$ResultDtoTearOff {
   const _$ResultDtoTearOff();
 
   _ResultDto call(
-      {String? student_full_name,
+      {int? id,
+      String? student_full_name,
       String? student_id,
       int? model_test,
       int? total_question_attended,
@@ -32,6 +33,7 @@ class _$ResultDtoTearOff {
       int? duration,
       String? pass_fail}) {
     return _ResultDto(
+      id: id,
       student_full_name: student_full_name,
       student_id: student_id,
       model_test: model_test,
@@ -55,6 +57,7 @@ const $ResultDto = _$ResultDtoTearOff();
 
 /// @nodoc
 mixin _$ResultDto {
+  int? get id => throw _privateConstructorUsedError;
   String? get student_full_name => throw _privateConstructorUsedError;
   String? get student_id => throw _privateConstructorUsedError;
   int? get model_test => throw _privateConstructorUsedError;
@@ -77,7 +80,8 @@ abstract class $ResultDtoCopyWith<$Res> {
   factory $ResultDtoCopyWith(ResultDto value, $Res Function(ResultDto) then) =
       _$ResultDtoCopyWithImpl<$Res>;
   $Res call(
-      {String? student_full_name,
+      {int? id,
+      String? student_full_name,
       String? student_id,
       int? model_test,
       int? total_question_attended,
@@ -99,6 +103,7 @@ class _$ResultDtoCopyWithImpl<$Res> implements $ResultDtoCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? student_full_name = freezed,
     Object? student_id = freezed,
     Object? model_test = freezed,
@@ -111,6 +116,10 @@ class _$ResultDtoCopyWithImpl<$Res> implements $ResultDtoCopyWith<$Res> {
     Object? pass_fail = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       student_full_name: student_full_name == freezed
           ? _value.student_full_name
           : student_full_name // ignore: cast_nullable_to_non_nullable
@@ -162,7 +171,8 @@ abstract class _$ResultDtoCopyWith<$Res> implements $ResultDtoCopyWith<$Res> {
       __$ResultDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? student_full_name,
+      {int? id,
+      String? student_full_name,
       String? student_id,
       int? model_test,
       int? total_question_attended,
@@ -185,6 +195,7 @@ class __$ResultDtoCopyWithImpl<$Res> extends _$ResultDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? student_full_name = freezed,
     Object? student_id = freezed,
     Object? model_test = freezed,
@@ -197,6 +208,10 @@ class __$ResultDtoCopyWithImpl<$Res> extends _$ResultDtoCopyWithImpl<$Res>
     Object? pass_fail = freezed,
   }) {
     return _then(_ResultDto(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       student_full_name: student_full_name == freezed
           ? _value.student_full_name
           : student_full_name // ignore: cast_nullable_to_non_nullable
@@ -245,7 +260,8 @@ class __$ResultDtoCopyWithImpl<$Res> extends _$ResultDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ResultDto extends _ResultDto {
   const _$_ResultDto(
-      {this.student_full_name,
+      {this.id,
+      this.student_full_name,
       this.student_id,
       this.model_test,
       this.total_question_attended,
@@ -260,6 +276,8 @@ class _$_ResultDto extends _ResultDto {
   factory _$_ResultDto.fromJson(Map<String, dynamic> json) =>
       _$_$_ResultDtoFromJson(json);
 
+  @override
+  final int? id;
   @override
   final String? student_full_name;
   @override
@@ -283,13 +301,15 @@ class _$_ResultDto extends _ResultDto {
 
   @override
   String toString() {
-    return 'ResultDto(student_full_name: $student_full_name, student_id: $student_id, model_test: $model_test, total_question_attended: $total_question_attended, total_right_answer: $total_right_answer, total_wrong_answer: $total_wrong_answer, total_negative_marks: $total_negative_marks, total_marks: $total_marks, duration: $duration, pass_fail: $pass_fail)';
+    return 'ResultDto(id: $id, student_full_name: $student_full_name, student_id: $student_id, model_test: $model_test, total_question_attended: $total_question_attended, total_right_answer: $total_right_answer, total_wrong_answer: $total_wrong_answer, total_negative_marks: $total_negative_marks, total_marks: $total_marks, duration: $duration, pass_fail: $pass_fail)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ResultDto &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.student_full_name, student_full_name) ||
                 const DeepCollectionEquality()
                     .equals(other.student_full_name, student_full_name)) &&
@@ -326,6 +346,7 @@ class _$_ResultDto extends _ResultDto {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(student_full_name) ^
       const DeepCollectionEquality().hash(student_id) ^
       const DeepCollectionEquality().hash(model_test) ^
@@ -350,7 +371,8 @@ class _$_ResultDto extends _ResultDto {
 
 abstract class _ResultDto extends ResultDto {
   const factory _ResultDto(
-      {String? student_full_name,
+      {int? id,
+      String? student_full_name,
       String? student_id,
       int? model_test,
       int? total_question_attended,
@@ -365,6 +387,8 @@ abstract class _ResultDto extends ResultDto {
   factory _ResultDto.fromJson(Map<String, dynamic> json) =
       _$_ResultDto.fromJson;
 
+  @override
+  int? get id => throw _privateConstructorUsedError;
   @override
   String? get student_full_name => throw _privateConstructorUsedError;
   @override

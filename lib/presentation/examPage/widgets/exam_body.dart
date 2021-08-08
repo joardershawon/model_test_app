@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:model_test/application/question_bank/questionbank_bloc.dart';
 import 'package:model_test/presentation/design/coolors.dart';
 import 'package:model_test/presentation/design/size.dart';
+import 'package:model_test/presentation/examPage/widgets/exam_card_widget.dart';
+import 'package:model_test/presentation/router/router.gr.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class ExamBody extends StatefulWidget {
@@ -47,8 +50,8 @@ class _ExamBodyState extends State<ExamBody> {
                         .questionList![currentIndex].questionOption3!.value,
                     qFourth: state
                         .questionList![currentIndex].questionOption4!.value,
-                    qFifth: state.questionList![currentIndex]
-                        .questionCorrectAnswer!.value,
+                    qFifth: state
+                        .questionList![currentIndex].questionOption5!.value,
                   ),
                   const SizedBox(
                     height: 50,
@@ -85,16 +88,23 @@ class _ExamBodyState extends State<ExamBody> {
                     ],
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 40,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AppButton(
                         onTap: () {
-                          BlocProvider.of<QuestionbankBloc>(context).add(
-                            QuestionbankEvent.submitPressed(),
-                          );
+                          showConfirmDialogCustom(
+                            context,
+                            title: 'Submit?',
+                            onAccept: (_) {
+                              // BlocProvider.of<QuestionbankBloc>(context).add(
+                              //   QuestionbankEvent.submitPressed(),
+                              // );
+                              AutoRouter.of(context).popTop();
+                            },
+                          ).then((value) => AutoRouter.of(context).popTop());
                         },
                         color: Coolors.blue5,
                         text: 'Submit?',
@@ -107,105 +117,6 @@ class _ExamBodyState extends State<ExamBody> {
           },
         );
       },
-    );
-  }
-}
-
-class ExamCardWidget extends StatelessWidget {
-  final String? qIndex, qStr, qFirst, qSecond, qThird, qFourth, qFifth;
-  final int? currentIndex;
-
-  const ExamCardWidget({
-    Key? key,
-    @required this.qIndex,
-    @required this.qStr,
-    @required this.qFirst,
-    @required this.qSecond,
-    @required this.qThird,
-    @required this.qFourth,
-    @required this.qFifth,
-    @required this.currentIndex,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: getPercentSize(60, true, context),
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Text(
-              qIndex! + '. ' + qStr!,
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          OptionWidget(
-            qStr: qFirst,
-            currentIndex: currentIndex,
-          ),
-          OptionWidget(
-            qStr: qSecond,
-            currentIndex: currentIndex,
-          ),
-          OptionWidget(
-            qStr: qThird,
-            currentIndex: currentIndex,
-          ),
-          OptionWidget(
-            qStr: qFourth,
-            currentIndex: currentIndex,
-          ),
-          OptionWidget(
-            qStr: qFifth,
-            currentIndex: currentIndex,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class OptionWidget extends HookWidget {
-  const OptionWidget({
-    Key? key,
-    @required this.currentIndex,
-    @required this.qStr,
-  }) : super(key: key);
-
-  final String? qStr;
-  final int? currentIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: ListTile(
-        onTap: () {
-          BlocProvider.of<QuestionbankBloc>(context).add(
-            QuestionbankEvent.optionPressed(
-              qStr!.isNotEmpty ? qStr : 'none',
-              currentIndex,
-            ),
-          );
-        },
-        title: Text(
-          qStr!.isEmpty ? 'None Above' : qStr!,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 18,
-          ),
-        ),
-        tileColor: Coolors.razzmicBerry.withOpacity(.5),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
     );
   }
 }

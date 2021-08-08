@@ -17,23 +17,25 @@ class _$ResultTearOff {
   const _$ResultTearOff();
 
   _Result call(
-      {StudentFullName? studentFullName,
+      {ResultId? resultId,
+      StudentFullName? studentFullName,
       StudentId? studentId,
       ModelTestNo? modelTestNo,
       TotalQAttended? totalQAttended,
       TotalRAnswer? totalRAnswer,
-      TotalWAnswer? totalWAnswer,
+      TotalWrongAnswer? totalWrongAnswer,
       TotalNegativeMarks? totalNegativeMarks,
       TotalMarks? totalMarks,
       PassOrFail? passOrFail,
       DurationTaken? durationTaken}) {
     return _Result(
+      resultId: resultId,
       studentFullName: studentFullName,
       studentId: studentId,
       modelTestNo: modelTestNo,
       totalQAttended: totalQAttended,
       totalRAnswer: totalRAnswer,
-      totalWAnswer: totalWAnswer,
+      totalWrongAnswer: totalWrongAnswer,
       totalNegativeMarks: totalNegativeMarks,
       totalMarks: totalMarks,
       passOrFail: passOrFail,
@@ -47,12 +49,13 @@ const $Result = _$ResultTearOff();
 
 /// @nodoc
 mixin _$Result {
+  ResultId? get resultId => throw _privateConstructorUsedError;
   StudentFullName? get studentFullName => throw _privateConstructorUsedError;
   StudentId? get studentId => throw _privateConstructorUsedError;
   ModelTestNo? get modelTestNo => throw _privateConstructorUsedError;
   TotalQAttended? get totalQAttended => throw _privateConstructorUsedError;
   TotalRAnswer? get totalRAnswer => throw _privateConstructorUsedError;
-  TotalWAnswer? get totalWAnswer => throw _privateConstructorUsedError;
+  TotalWrongAnswer? get totalWrongAnswer => throw _privateConstructorUsedError;
   TotalNegativeMarks? get totalNegativeMarks =>
       throw _privateConstructorUsedError;
   TotalMarks? get totalMarks => throw _privateConstructorUsedError;
@@ -68,12 +71,13 @@ abstract class $ResultCopyWith<$Res> {
   factory $ResultCopyWith(Result value, $Res Function(Result) then) =
       _$ResultCopyWithImpl<$Res>;
   $Res call(
-      {StudentFullName? studentFullName,
+      {ResultId? resultId,
+      StudentFullName? studentFullName,
       StudentId? studentId,
       ModelTestNo? modelTestNo,
       TotalQAttended? totalQAttended,
       TotalRAnswer? totalRAnswer,
-      TotalWAnswer? totalWAnswer,
+      TotalWrongAnswer? totalWrongAnswer,
       TotalNegativeMarks? totalNegativeMarks,
       TotalMarks? totalMarks,
       PassOrFail? passOrFail,
@@ -90,18 +94,23 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? resultId = freezed,
     Object? studentFullName = freezed,
     Object? studentId = freezed,
     Object? modelTestNo = freezed,
     Object? totalQAttended = freezed,
     Object? totalRAnswer = freezed,
-    Object? totalWAnswer = freezed,
+    Object? totalWrongAnswer = freezed,
     Object? totalNegativeMarks = freezed,
     Object? totalMarks = freezed,
     Object? passOrFail = freezed,
     Object? durationTaken = freezed,
   }) {
     return _then(_value.copyWith(
+      resultId: resultId == freezed
+          ? _value.resultId
+          : resultId // ignore: cast_nullable_to_non_nullable
+              as ResultId?,
       studentFullName: studentFullName == freezed
           ? _value.studentFullName
           : studentFullName // ignore: cast_nullable_to_non_nullable
@@ -122,10 +131,10 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
           ? _value.totalRAnswer
           : totalRAnswer // ignore: cast_nullable_to_non_nullable
               as TotalRAnswer?,
-      totalWAnswer: totalWAnswer == freezed
-          ? _value.totalWAnswer
-          : totalWAnswer // ignore: cast_nullable_to_non_nullable
-              as TotalWAnswer?,
+      totalWrongAnswer: totalWrongAnswer == freezed
+          ? _value.totalWrongAnswer
+          : totalWrongAnswer // ignore: cast_nullable_to_non_nullable
+              as TotalWrongAnswer?,
       totalNegativeMarks: totalNegativeMarks == freezed
           ? _value.totalNegativeMarks
           : totalNegativeMarks // ignore: cast_nullable_to_non_nullable
@@ -152,12 +161,13 @@ abstract class _$ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       __$ResultCopyWithImpl<$Res>;
   @override
   $Res call(
-      {StudentFullName? studentFullName,
+      {ResultId? resultId,
+      StudentFullName? studentFullName,
       StudentId? studentId,
       ModelTestNo? modelTestNo,
       TotalQAttended? totalQAttended,
       TotalRAnswer? totalRAnswer,
-      TotalWAnswer? totalWAnswer,
+      TotalWrongAnswer? totalWrongAnswer,
       TotalNegativeMarks? totalNegativeMarks,
       TotalMarks? totalMarks,
       PassOrFail? passOrFail,
@@ -175,18 +185,23 @@ class __$ResultCopyWithImpl<$Res> extends _$ResultCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? resultId = freezed,
     Object? studentFullName = freezed,
     Object? studentId = freezed,
     Object? modelTestNo = freezed,
     Object? totalQAttended = freezed,
     Object? totalRAnswer = freezed,
-    Object? totalWAnswer = freezed,
+    Object? totalWrongAnswer = freezed,
     Object? totalNegativeMarks = freezed,
     Object? totalMarks = freezed,
     Object? passOrFail = freezed,
     Object? durationTaken = freezed,
   }) {
     return _then(_Result(
+      resultId: resultId == freezed
+          ? _value.resultId
+          : resultId // ignore: cast_nullable_to_non_nullable
+              as ResultId?,
       studentFullName: studentFullName == freezed
           ? _value.studentFullName
           : studentFullName // ignore: cast_nullable_to_non_nullable
@@ -207,10 +222,10 @@ class __$ResultCopyWithImpl<$Res> extends _$ResultCopyWithImpl<$Res>
           ? _value.totalRAnswer
           : totalRAnswer // ignore: cast_nullable_to_non_nullable
               as TotalRAnswer?,
-      totalWAnswer: totalWAnswer == freezed
-          ? _value.totalWAnswer
-          : totalWAnswer // ignore: cast_nullable_to_non_nullable
-              as TotalWAnswer?,
+      totalWrongAnswer: totalWrongAnswer == freezed
+          ? _value.totalWrongAnswer
+          : totalWrongAnswer // ignore: cast_nullable_to_non_nullable
+              as TotalWrongAnswer?,
       totalNegativeMarks: totalNegativeMarks == freezed
           ? _value.totalNegativeMarks
           : totalNegativeMarks // ignore: cast_nullable_to_non_nullable
@@ -235,17 +250,20 @@ class __$ResultCopyWithImpl<$Res> extends _$ResultCopyWithImpl<$Res>
 
 class _$_Result implements _Result {
   const _$_Result(
-      {this.studentFullName,
+      {this.resultId,
+      this.studentFullName,
       this.studentId,
       this.modelTestNo,
       this.totalQAttended,
       this.totalRAnswer,
-      this.totalWAnswer,
+      this.totalWrongAnswer,
       this.totalNegativeMarks,
       this.totalMarks,
       this.passOrFail,
       this.durationTaken});
 
+  @override
+  final ResultId? resultId;
   @override
   final StudentFullName? studentFullName;
   @override
@@ -257,7 +275,7 @@ class _$_Result implements _Result {
   @override
   final TotalRAnswer? totalRAnswer;
   @override
-  final TotalWAnswer? totalWAnswer;
+  final TotalWrongAnswer? totalWrongAnswer;
   @override
   final TotalNegativeMarks? totalNegativeMarks;
   @override
@@ -269,13 +287,16 @@ class _$_Result implements _Result {
 
   @override
   String toString() {
-    return 'Result(studentFullName: $studentFullName, studentId: $studentId, modelTestNo: $modelTestNo, totalQAttended: $totalQAttended, totalRAnswer: $totalRAnswer, totalWAnswer: $totalWAnswer, totalNegativeMarks: $totalNegativeMarks, totalMarks: $totalMarks, passOrFail: $passOrFail, durationTaken: $durationTaken)';
+    return 'Result(resultId: $resultId, studentFullName: $studentFullName, studentId: $studentId, modelTestNo: $modelTestNo, totalQAttended: $totalQAttended, totalRAnswer: $totalRAnswer, totalWrongAnswer: $totalWrongAnswer, totalNegativeMarks: $totalNegativeMarks, totalMarks: $totalMarks, passOrFail: $passOrFail, durationTaken: $durationTaken)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Result &&
+            (identical(other.resultId, resultId) ||
+                const DeepCollectionEquality()
+                    .equals(other.resultId, resultId)) &&
             (identical(other.studentFullName, studentFullName) ||
                 const DeepCollectionEquality()
                     .equals(other.studentFullName, studentFullName)) &&
@@ -291,9 +312,9 @@ class _$_Result implements _Result {
             (identical(other.totalRAnswer, totalRAnswer) ||
                 const DeepCollectionEquality()
                     .equals(other.totalRAnswer, totalRAnswer)) &&
-            (identical(other.totalWAnswer, totalWAnswer) ||
+            (identical(other.totalWrongAnswer, totalWrongAnswer) ||
                 const DeepCollectionEquality()
-                    .equals(other.totalWAnswer, totalWAnswer)) &&
+                    .equals(other.totalWrongAnswer, totalWrongAnswer)) &&
             (identical(other.totalNegativeMarks, totalNegativeMarks) ||
                 const DeepCollectionEquality()
                     .equals(other.totalNegativeMarks, totalNegativeMarks)) &&
@@ -311,12 +332,13 @@ class _$_Result implements _Result {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(resultId) ^
       const DeepCollectionEquality().hash(studentFullName) ^
       const DeepCollectionEquality().hash(studentId) ^
       const DeepCollectionEquality().hash(modelTestNo) ^
       const DeepCollectionEquality().hash(totalQAttended) ^
       const DeepCollectionEquality().hash(totalRAnswer) ^
-      const DeepCollectionEquality().hash(totalWAnswer) ^
+      const DeepCollectionEquality().hash(totalWrongAnswer) ^
       const DeepCollectionEquality().hash(totalNegativeMarks) ^
       const DeepCollectionEquality().hash(totalMarks) ^
       const DeepCollectionEquality().hash(passOrFail) ^
@@ -330,17 +352,20 @@ class _$_Result implements _Result {
 
 abstract class _Result implements Result {
   const factory _Result(
-      {StudentFullName? studentFullName,
+      {ResultId? resultId,
+      StudentFullName? studentFullName,
       StudentId? studentId,
       ModelTestNo? modelTestNo,
       TotalQAttended? totalQAttended,
       TotalRAnswer? totalRAnswer,
-      TotalWAnswer? totalWAnswer,
+      TotalWrongAnswer? totalWrongAnswer,
       TotalNegativeMarks? totalNegativeMarks,
       TotalMarks? totalMarks,
       PassOrFail? passOrFail,
       DurationTaken? durationTaken}) = _$_Result;
 
+  @override
+  ResultId? get resultId => throw _privateConstructorUsedError;
   @override
   StudentFullName? get studentFullName => throw _privateConstructorUsedError;
   @override
@@ -352,7 +377,7 @@ abstract class _Result implements Result {
   @override
   TotalRAnswer? get totalRAnswer => throw _privateConstructorUsedError;
   @override
-  TotalWAnswer? get totalWAnswer => throw _privateConstructorUsedError;
+  TotalWrongAnswer? get totalWrongAnswer => throw _privateConstructorUsedError;
   @override
   TotalNegativeMarks? get totalNegativeMarks =>
       throw _privateConstructorUsedError;

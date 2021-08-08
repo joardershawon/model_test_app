@@ -8,6 +8,7 @@ part 'result_dto.g.dart';
 abstract class ResultDto implements _$ResultDto {
   const ResultDto._();
   const factory ResultDto({
+    @required int? id,
     @required String? student_full_name,
     @required String? student_id,
     @required int? model_test,
@@ -22,17 +23,17 @@ abstract class ResultDto implements _$ResultDto {
 
   factory ResultDto.fromDomain(Result? result) {
     return ResultDto(
-      student_full_name: result!.studentFullName!.value,
-      student_id: result.studentId!.value,
-      model_test: result.modelTestNo!.value,
-      total_question_attended: result.totalQAttended!.value,
-      total_right_answer: result.totalRAnswer!.value,
-      total_wrong_answer: result.totalWAnswer!.value,
-      total_negative_marks: result.totalNegativeMarks!.value,
-      total_marks: result.totalMarks!.value,
-      pass_fail: result.passOrFail!.value,
-      duration: result.durationTaken!.value,
-    );
+        student_full_name: result!.studentFullName!.value,
+        student_id: result.studentId!.value,
+        model_test: result.modelTestNo!.value,
+        total_question_attended: result.totalQAttended!.value,
+        total_right_answer: result.totalRAnswer!.value,
+        total_wrong_answer: result.totalWrongAnswer!.value,
+        total_negative_marks: result.totalNegativeMarks!.value,
+        total_marks: result.totalMarks!.value,
+        pass_fail: result.passOrFail!.value,
+        duration: result.durationTaken!.value,
+        id: result.resultId!.value);
   }
 
   Result toDomain() {
@@ -42,11 +43,12 @@ abstract class ResultDto implements _$ResultDto {
       modelTestNo: ModelTestNo(model_test),
       totalQAttended: TotalQAttended(total_question_attended),
       totalRAnswer: TotalRAnswer(total_right_answer),
-      totalWAnswer: TotalWAnswer(total_wrong_answer),
+      totalWrongAnswer: TotalWrongAnswer(total_wrong_answer),
       totalNegativeMarks: TotalNegativeMarks(total_negative_marks),
       totalMarks: TotalMarks(total_marks),
       passOrFail: PassOrFail(pass_fail),
       durationTaken: DurationTaken(duration ?? 0),
+      resultId: ResultId(id),
     );
   }
 

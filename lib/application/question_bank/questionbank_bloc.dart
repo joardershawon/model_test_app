@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -29,9 +28,9 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
 
   List<QuestionBank> qList = [];
   List<String> ansList = [];
-  Result result = Result.empty();
+  Result _result = Result.empty();
   int currentIndex = 0;
-  int counter = 10;
+
   @override
   Stream<QuestionbankState> mapEventToState(
     QuestionbankEvent event,
@@ -45,12 +44,11 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
             .toList();
         ansList = List.filled(qList.length, 'null');
         if (qList.isNotEmpty) {
-          yield QuestionbankState.loadSuccess(qList, result, none());
+          yield QuestionbankState.loadSuccess(qList, _result, none());
         } else {
           qList.add(QuestionBank.empty());
-          yield QuestionbankState.loadSuccess(qList, result, none());
+          yield QuestionbankState.loadSuccess(qList, _result, none());
         }
-        print(result);
       },
       optionPressed: (e) async* {
         currentIndex = e.currentIndex!;
@@ -60,49 +58,58 @@ class QuestionbankBloc extends Bloc<QuestionbankEvent, QuestionbankState> {
             .contains(e.option!)) {
           ansList[e.currentIndex!].contains('null')
               ? ansList[e.currentIndex!] = 'true'
-              : ansList[e.currentIndex!] = ansList[e.currentIndex!];
+              : ansList[e.currentIndex!] = 'null';
         } else {
           ansList[e.currentIndex!].contains('null')
               ? ansList[e.currentIndex!] = 'false'
-              : ansList[e.currentIndex!] = ansList[e.currentIndex!];
+              : ansList[e.currentIndex!] = 'null';
         }
+
+        yield QuestionbankState.loadSuccess(
+          qList,
+          _result,
+          none(),
+        );
       },
       submitPressed: (e) async* {
         //** .............Result Calculations.......... */
         var totalAnswrd = ansList.where((element) => element != 'null').length;
         var rightAns = ansList.where((element) => element == 'true').length;
+
         var wrongAns = ansList.where((element) => element == 'false').length;
+
         var totNeg =
             wrongAns * qList[currentIndex].modelTest!.modelNegativeMarks!.value;
-        var totalMarks = rightAns - totNeg;
+        var totalMarks = (rightAns - totNeg);
         var passOrf =
             qList[currentIndex].modelTest!.modelPassMarks!.value <= totalMarks
                 ? 'P'
                 : 'F';
 
-        result = Result(
+        _result = Result(
           studentFullName: StudentFullName('JS'),
           studentId: StudentId('9939'),
           modelTestNo:
               ModelTestNo(qList[currentIndex].modelTest!.modelId!.value),
           totalQAttended: TotalQAttended(totalAnswrd),
           totalRAnswer: TotalRAnswer(rightAns),
-          totalWAnswer: TotalWAnswer(wrongAns),
+          totalWrongAnswer: TotalWrongAnswer(wrongAns),
           totalNegativeMarks: TotalNegativeMarks(totNeg),
           totalMarks: TotalMarks(totalMarks),
           passOrFail: PassOrFail(passOrf),
           durationTaken: DurationTaken(360),
+          resultId: ResultId(0),
         );
         //TODO: Post Result //
 
-        ResultDto resultDto = ResultDto.fromDomain(result);
+        ResultDto resultDto = ResultDto.fromDomain(_result);
+
         Either<ResultFailure, Unit> failureOrSuccess;
         failureOrSuccess = await _iResultRepository.postResult(resultDto);
-        print(failureOrSuccess);
-        print(result);
+
         yield QuestionbankState.loadSuccess(
           qList,
-          result,
+          _result,
           optionOf(failureOrSuccess),
         );
       },

@@ -28,16 +28,16 @@ class ResultRepository implements IResultRepository {
   Future<Either<ResultFailure, Unit>> postResult(ResultDto resultDto) async {
     Client _client = Client();
 
-    var student_full_name = resultDto.student_full_name;
-    var student_id = resultDto.student_id;
-    var model_test = resultDto.model_test;
-    var total_question_attended = resultDto.total_question_attended;
-    var total_right_answer = resultDto.total_right_answer;
-    var total_wrong_answer = resultDto.total_wrong_answer;
-    var total_negative_marks = resultDto.total_negative_marks;
-    var total_marks = resultDto.total_marks;
+    var studentFullName = resultDto.student_full_name;
+    var studentId = resultDto.student_id;
+    var modelTest = resultDto.model_test;
+    var totalQuestionAttended = resultDto.total_question_attended;
+    var totalRightAnswer = resultDto.total_right_answer;
+    var totalWrongAnswer = resultDto.total_wrong_answer;
+    var totalNegativeMarks = resultDto.total_negative_marks;
+    var totalMarks = resultDto.total_marks;
     var duration = resultDto.duration;
-    var pass_fail = resultDto.pass_fail;
+    var passFail = resultDto.pass_fail;
 
     // var student_full_name = resultDto.student_full_name;
     final response = await _client.post(
@@ -45,21 +45,20 @@ class ResultRepository implements IResultRepository {
         ApiPath.postResult,
       ),
       headers: {
-        'Accept': '*/*',
         'Content-Type': 'application/json; charset=utf-8',
       },
       body: jsonEncode(
         <String, String>{
-          "student_full_name": "$student_full_name",
-          "student_id": "$student_id",
-          "model_test": "$model_test",
-          "total_question_attended": "$total_question_attended",
-          "total_right_answer": "$total_right_answer",
-          "total_wrong_answer": "$total_wrong_answer",
-          "total_negative_marks": "$total_negative_marks",
-          "total_marks": "$total_marks",
+          "student_full_name": "$studentFullName",
+          "student_id": "$studentId",
+          "model_test": "$modelTest",
+          "total_question_attended": "$totalQuestionAttended",
+          "total_right_answer": "$totalRightAnswer",
+          "total_wrong_answer": "$totalWrongAnswer",
+          "total_negative_marks": "$totalNegativeMarks",
+          "total_marks": "$totalMarks",
           "duration": "$duration",
-          "pass_fail": "$pass_fail"
+          "pass_fail": "$passFail"
         },
       ),
     );
